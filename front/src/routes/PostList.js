@@ -111,7 +111,7 @@ const PostList = () => {
         <StyledBody>
             <StyledList>
                 <div style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px', width: '100%', textAlign: 'right', background: '#F3FBFB', borderColor: '#C4C4C4', borderStyle: 'solid', borderWidth: '0 0 1px 0' }}>
-                    <WriteButton>글쓰기</WriteButton>
+                    <WriteButton onClick={() => window.location.href = '/upload'}>글쓰기</WriteButton>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row', margin: '5% 10% 5% 10%', justifyContent: 'center'}}>
                     <StyledLink isSelected={category === "tox" ? true : false} href="/board/tox">
