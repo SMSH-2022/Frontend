@@ -47,7 +47,7 @@ function TopBar() {
       <Box>
         <Logo src={imgLogo}/>
         <Menus>
-          <Menu href='/post'>게시글</Menu>
+          <Menu href='/board/tox'>게시글</Menu>
           <Menu href='/inter'>MZ용어 번역기</Menu>
           <Menu>개발자 소개</Menu>
         </Menus>
