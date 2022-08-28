@@ -53,6 +53,7 @@ function TopBar() {
           <Menu>개발자 소개</Menu>
         </Menus>
         <Button>로그인</Button>
+        <Router/>
       </Box>
     );
   }
