@@ -125,7 +125,7 @@ function Upload() {
             const jsonRes = await res.json();
             console.log('응답 : ', jsonRes);
           }).catch((e) => console.log(e));
-          //window.location.href = `/post/${postId}`;
+          //window.location.href = `/Frontend/post/${postId}`;
     }
 
     return (

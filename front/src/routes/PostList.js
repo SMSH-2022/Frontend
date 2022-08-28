@@ -150,18 +150,18 @@ const PostList = () => {
                         <SearchBar placeholder='검색어를 입력하세요' value={keyword} onChange={(e) => setKeyword(e.target.value)}/>
                         <FcSearch onClick={onClickSearch} style={{width: '25px', height: '25px', cursor: 'pointer', padding: '5px', marginLeft: '5px'}}/>
                     </div>
-                    <WriteButton onClick={() => window.location.href = '/upload'}>글쓰기</WriteButton>
+                    <WriteButton onClick={() => window.location.href = '/Frontend/upload'}>글쓰기</WriteButton>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row', margin: '5% 10% 3% 10%', justifyContent: 'center'}}>
-                    <StyledLink isSelected={category === "tox" ? true : false} href="/board/tox">
+                    <StyledLink isSelected={category === "tox" ? true : false} href="/Frontend/board/tox">
                         <span style={{ fontSize: 'x-large' }}>🙋🏼‍♂️ </span>
                         <span style={{ fontSize: 'medium', fontWeight: 'bold'}}>X-gennie한테 질문하기</span>
                     </StyledLink>
-                    <StyledLink isSelected={category === "tomz" ? true : false} href="/board/tomz">
+                    <StyledLink isSelected={category === "tomz" ? true : false} href="/Frontend/board/tomz">
                         <span style={{ fontSize: 'x-large' }}>🙋🏻‍♀️‍️ </span>
                         <span style={{ fontSize: 'medium', fontWeight: 'bold'}}>MZ-gennie한테 질문하기</span>
                     </StyledLink>
-                    <StyledLink isSelected={category === "all" ? true : false} href="/board/all">
+                    <StyledLink isSelected={category === "all" ? true : false} href="/Frontend/board/all">
                         <span style={{ fontSize: 'x-large' }}>👨‍👩‍👧 </span>
                         <span style={{ fontSize: 'medium', fontWeight: 'bold'}}>모두에게 질문하기</span>
                     </StyledLink>

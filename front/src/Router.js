@@ -10,11 +10,11 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<MainPage/>} />
-        <Route exact path="/board/:category" element={<PostList/>}/>
-        <Route path="/upload" element={<Upload/>} />
-        <Route path="/post/:postId" element={<Post/>} />
-        <Route path="/inter" element={<Interpreter/>} />
+        <Route exact path="/Frontend/" element={<MainPage/>} />
+        <Route exact path="/Frontend/board/:category" element={<PostList/>}/>
+        <Route path="/Frontend/upload" element={<Upload/>} />
+        <Route path="/Frontend/post/:postId" element={<Post/>} />
+        <Route path="/Frontend/inter" element={<Interpreter/>} />
       </Routes>
     </BrowserRouter>
   );
