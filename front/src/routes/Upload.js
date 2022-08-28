@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { WithContext as ReactTags } from 'react-tag-input';
 import './ReactTags.css';
 import axios from "axios";
+import { API_URL } from "../config";
 
 
 const Wrapper = styled.div`
@@ -104,19 +105,27 @@ function Upload() {
         setTags(newTags);
       };
 
-    useEffect(() => {
-        // 게시물 등록 후 등록된 게시물 페이지로 이동
-        // axios.post('', {params:{}, withCredentials: true})
-        // .then((response) => {
-        //     // const postId = resonse.json().id
-        // })
-        // .catch((e) => console.log(e));
-        const postId = 3;
-        window.location.href = `/post/${postId}`;
-    }, [post])
-
     const handleValid = (data) => {
-        setPost(data);
+        //setPost(data);
+        const postData = {
+            title: data.title,
+            body: data.content,
+            author: "630b2050f0129e7d0ec36a83",
+            createdAt: new Date(),
+            updatedAt: new Date()
+        };
+        // 게시물 등록 후 등록된 게시물 페이지로 이동
+        fetch(`${API_URL}/posts`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData),
+          }).then(async (res) => {
+            const jsonRes = await res.json();
+            console.log('응답 : ', jsonRes);
+          }).catch((e) => console.log(e));
+          //window.location.href = `/post/${postId}`;
     }
 
     return (

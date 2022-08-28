@@ -4,6 +4,7 @@ import PostItem from './PostItem';
 import { Link, useParams } from 'react-router-dom';
 import {FcSearch} from 'react-icons/fc';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const StyledBody = styled.div`
     /* background: radial-gradient(95.15% 88.15% at 50% 17.78%, #8ED7DA 0%, #62BEE8 100%);
@@ -118,17 +119,18 @@ const data = {
 const PostList = () => {
     const { category } = useParams();
     const [board, setBoard] = useState(category);  // 게시판 종류
-    const [posts, setPosts] = useState(data[category]);  // 해당 게시판 글 목록
+    const [posts, setPosts] = useState(board[category]);  // 해당 게시판 글 목록
     const [keyword, setKeyword] = useState();
 
     /* data request */
-    // const getPosts = (endpoint) => {
-    //  axios.get('', {params:{}, withCredentials: true})
-    // .then((response) => {
-    //      console.log(response.data);
-    //      setPosts(response.data[category]);
-    // })
-    // .catch((e) => console.log(e));
+    const getPosts = (endpoint) => {
+        axios.get(`${API_URL}/posts`, {params:{}, withCredentials: true})
+        .then((response) => {
+            console.log(response.data);
+            setBoard(response.data[category]);
+        })
+        .catch((e) => console.log(e));
+    }
 
     useEffect(() => {
         setBoard(category);
