@@ -39,6 +39,13 @@ const popupVariants = {
 	staggerChildren: 0.2
 }
 
+const StyledDiv = styled.div`
+    font-family: Hind Vadodara;
+    font-style: normal;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+`
+
 const MainPage = () => {
 
     return (
@@ -60,37 +67,35 @@ const MainPage = () => {
                 animate={{ x: 0, opacity: 1}}
             >
                 <img src={imgBubble} className='image'alt='dd'/>
-                <div style={{ fontFamily: 'Hind Vadodara', fontStyle: 'normal', fontWeight: "700", fontSize: "50px", lineHeight: "110%", letterSpacing: "-0.01em", color: 'white', paddingBottom: '20px', paddingLeft:'50px' }}>
-                    안녕하세요!<br/> Gennies입니다.
-                </div>
-                <div style={{ fontFamily: 'Hind Vadodara', fontStyle: "normal", fontWeight: "600", fontSize: "30px", lineHeight: "110%", letterSpacing: "-0.01em", paddingBottom: '10px', paddingLeft:'50px' }}>
-                    세대 간 대화 갈등,<br/> 많이 힘드셨죠?
-                </div>
-                <div style={{ paddingLeft:'50px' }}>서비스설명 - 정보를 제공 받아보세요.</div>
+                <StyledDiv style={{ fontWeight: "700", fontSize: "50px", color: 'white', paddingBottom: '20px', paddingLeft:'50px' }}>
+                    안녕하세요!<br/> GENNIES입니다.
+                </StyledDiv>
+                <StyledDiv style={{ fontWeight: "600", fontSize: "30px", paddingBottom: '10px', paddingLeft:'50px' }}>
+                    세대 간 차이로 인한 갈등,<br/> 많이 힘드셨죠?
+                </StyledDiv>
+                <div style={{ fontFamily: 'Hind Vadodara', fontStyle: 'normal', paddingLeft:'50px' }}>
+                    GENNIES는 세대를 뜻하는 Generation을 줄인 말이에요.<br/>
+                    여기, GENNIES에서 그 차이를 좁힐 수 있도록 도와드릴게요.</div>
             </motion.div>
             <motion.div 
                 variants={popupVariants} initial="start" animate="end" transition={{duration: 1}}
                 style={{ display: 'flex', flexDirection: 'column', margin: '5%', justifyContent: 'left', alignItems: 'left'}}
             >
-                <motion.div>
-                    <StyledAnchor href='/board/tox'>
-                        <div className='icon'>🙋🏼‍♂️</div>
-                        <div className='menu'>X-gennie에게<br/>질문하기</div>
-                    </StyledAnchor>
-                </motion.div>
-                <motion.div>
-                    <StyledAnchor href='/board/tomz'>
-                        <div className='icon'>🙋🏼‍♀️</div>
-                        <div className='menu'>MZ-gennie에게<br/>질문하기</div>
-                    </StyledAnchor>
-                </motion.div>
-                <motion.div>
-                    <StyledAnchor href='/board/all'>
-                        <div className='icon'>👨‍👩‍👧</div>
-                        <div className='menu'>모두에게<br/>질문하기</div>
-                    </StyledAnchor> 
-                </motion.div>          
-            </motion.div>
+            <div style={{ display: 'flex', flexDirection: 'column', margin: '5%', justifyContent: 'left', alignItems: 'left'}}>
+                <StyledAnchor href='/board/tox'>
+                    <div className='icon'>🙋🏼‍♂️</div>
+                    <div className='menu'>X-gennie에게<br/>질문하기</div>
+                </StyledAnchor>
+                <StyledAnchor href='/board/tomz'>
+                    <div className='icon'>🙋🏼‍♀️</div>
+                    <div className='menu'>MZ-gennie에게<br/>질문하기</div>
+                </StyledAnchor>
+                <StyledAnchor href='/board/all'>
+                    <div className='icon'>👨‍👩‍👧</div>
+                    <div className='menu'>모두에게<br/>질문하기</div>
+                </StyledAnchor> 
+                </motion.div>  
+            </div>
         </StyledBody>
             
     );
