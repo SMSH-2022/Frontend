@@ -8,13 +8,13 @@ import PostList from './routes/PostList';
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename=''>
       <Routes>
-        <Route exact path="/front" element={<MainPage/>} />
-        <Route exact path="/front/board/:category" element={<PostList/>}/>
-        <Route path="/front/upload" element={<Upload/>} />
-        <Route path="/front/post/:postId" element={<Post/>} />
-        <Route path="/front/inter" element={<Interpreter/>} />
+        <Route exact path="/Frontend" element={<MainPage/>} />
+        <Route exact path="/Frontend/board/:category" element={<PostList/>}/>
+        <Route path="/Frontend/upload" element={<Upload/>} />
+        <Route path="/Frontend/post/:postId" element={<Post/>} />
+        <Route path="/Frontend/inter" element={<Interpreter/>} />
       </Routes>
     </BrowserRouter>
   );
