@@ -25,6 +25,13 @@ const StyledAnchor = styled.a`
     align-items: center;
 `
 
+const StyledDiv = styled.div`
+    font-family: Hind Vadodara;
+    font-style: normal;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+`
+
 const MainPage = () => {
     return (
         /* Body */
@@ -34,13 +41,15 @@ const MainPage = () => {
             </div>
             <div className='intro'>
                 <img src={imgBubble} className='image'alt='dd'/>
-                <div style={{ fontFamily: 'Hind Vadodara', fontStyle: 'normal', fontWeight: "700", fontSize: "50px", lineHeight: "110%", letterSpacing: "-0.01em", color: 'white', paddingBottom: '20px', paddingLeft:'50px' }}>
-                    안녕하세요!<br/> Gennies입니다.
-                </div>
-                <div style={{ fontFamily: 'Hind Vadodara', fontStyle: "normal", fontWeight: "600", fontSize: "30px", lineHeight: "110%", letterSpacing: "-0.01em", paddingBottom: '10px', paddingLeft:'50px' }}>
-                    세대 간 대화 갈등,<br/> 많이 힘드셨죠?
-                </div>
-                <div style={{ paddingLeft:'50px' }}>서비스설명 - 정보를 제공 받아보세요.</div>
+                <StyledDiv style={{ fontWeight: "700", fontSize: "50px", color: 'white', paddingBottom: '20px', paddingLeft:'50px' }}>
+                    안녕하세요!<br/> GENNIES입니다.
+                </StyledDiv>
+                <StyledDiv style={{ fontWeight: "600", fontSize: "30px", paddingBottom: '10px', paddingLeft:'50px' }}>
+                    세대 간 차이로 인한 갈등,<br/> 많이 힘드셨죠?
+                </StyledDiv>
+                <div style={{ fontFamily: 'Hind Vadodara', fontStyle: 'normal', paddingLeft:'50px' }}>
+                    GENNIES는 세대를 뜻하는 Generation을 줄인 말이에요.<br/>
+                    여기, GENNIES에서 그 차이를 좁힐 수 있도록 도와드릴게요.</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', margin: '5%', justifyContent: 'left', alignItems: 'left'}}>
                 <StyledAnchor href='/board/tox'>
