@@ -46,14 +46,13 @@ const Button  = styled(Menu)`
 function TopBar() {
     return (
       <Box>
-        <Logo src={imgLogo} onClick={() => window.location.href = '/Frontend/'}/>
+        <Logo src={imgLogo} onClick={() => window.location.href = '/'}/>
         <Menus>
-          <Menu href='/Frontend/board/tox'>게시글</Menu>
-          <Menu href='/Frontend/inter'>MZ용어 번역기</Menu>
+          <Menu href='/board/tox'>게시글</Menu>
+          <Menu href='/inter'>MZ용어 번역기</Menu>
           <Menu>개발자 소개</Menu>
         </Menus>
         <Button>로그인</Button>
-        <Router/>
       </Box>
     );
   }
