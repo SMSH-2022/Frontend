@@ -1,1 +1,1 @@
-export const API_URL = '';
+export const API_URL = 'https://mzx-gennies.herokuapp.com/';
