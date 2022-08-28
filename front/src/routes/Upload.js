@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { WithContext as ReactTags } from 'react-tag-input';
+import './ReactTags.css';
+
 
 const Wrapper = styled.div`
     padding-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 90vh;
 `;
 
 const Box = styled.div`
     background: rgba(255, 255, 255, 0.5);
     padding: 80px;
     width: 70%;
-    height: 60vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -28,19 +32,20 @@ const Title = styled.input`
     font-size: 40px;
     line-height: 48px;
     border: 0;
+    outline-style: none;
 `;
 
 const Input = styled.input`
     border: 0;
     background-color: rgba(255,255,255,0);
     font-size: 16px;
-    width: 100%;
+    width: 200px;
     margin-top: 10px;
 `;
 
 const Select = styled.select`
     border: 0;
-    width:  50%;
+    width:  200px;
     height: 30px;
     margin: 10px 0px;
     border-radius: 4px;
@@ -55,8 +60,9 @@ const Textfield = styled.textarea`
     resize: none;
     box-sizing : border-box;
     padding: 20px;
-    height: 100%;
+    min-height: 300px;
     width: 100%;
+    outline-style: none;
 `;
 
 const Button =styled.input`
@@ -70,12 +76,32 @@ const Button =styled.input`
     color: #FFFFFF;
     border: 0;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 `
 
 function Upload() {
     const [post, setPost] = useState();
+    const [tags, setTags] = React.useState([]);
     const {register,  formState: { errors }, handleSubmit, setValue } = useForm();
+
+    const handleDelete = i => {
+        setTags(tags.filter((tag, index) => index !== i));
+      };
+
+    const handleAddition = tag => {
+        setTags([...tags, tag]);
+    };
+
+    const handleDrag = (tag, currPos, newPos) => {
+        const newTags = tags.slice();
+    
+        newTags.splice(currPos, 1);
+        newTags.splice(newPos, 0, tag);
+    
+        // re-render
+        setTags(newTags);
+      };
 
     useEffect(() => {
         fetch(``, {
@@ -88,6 +114,7 @@ function Upload() {
         const jsonRes = await res.json();
         console.log('응답 : ', jsonRes);
       });
+      //window.location.href = '/post'
     }, [post])
 
     const handleValid = (data) => {
@@ -98,17 +125,30 @@ function Upload() {
         <Wrapper>
             <Box>
                 <form onSubmit={handleSubmit(handleValid)}>
-                    <Title {...register("title", { required: true })} type="text" placeholder="제목을 입력하세요"/>
-                    {errors.title && alert("제목을 입력해주세요")}
-                    <Input {...register("category", { required: true })} type="text" placeholder="주제를 입력하세요" />
-                    {errors.category && alert("주제를 입력해주세요")}
+                    <Title {...register("title", { required: true })} type="text" placeholder="제목을 입력하세요"/><br/>
+                    <ReactTags
+                        classNames={{
+                            tags: 'ReactTags__tags',
+                            tagInput: 'ReactTags__tagInput',
+                            tagInputField: 'ReactTags__tagInputField',
+                            selected: 'ReactTags__selected',
+                            tag: 'ReactTags__tag',
+                            remove: 'ReactTags__remove',
+                          }}
+                        tags={tags}
+                        handleDelete={handleDelete}
+                        handleAddition={handleAddition}
+                        handleDrag={handleDrag}
+                        inputFieldPosition="inline"
+                        placeholder="주제를 입력하세요"
+                    />
                     <Select {...register("generation")}>
                         <option value="x">X세대에게 질문하기</option>
                         <option value="mz">MZ세대에게 질문하기</option>
                         <option value="all">모두에게 질문하기</option>
                     </Select><br/>
                     <Textfield  {...register("content", { required: true })} placeholder="내용 입력하기"/>
-                    {errors.content && alert("내용을 입력해주세요")}
+                    {Object.keys(errors).length > 0 && <div style={{color: 'red', margin: '5px'}}>❗️ 필수항목이 누락되었습니다</div>}
                     <Button type="submit" value="저장"/>
                 </form>
             </Box>

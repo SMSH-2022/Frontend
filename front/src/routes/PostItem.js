@@ -32,12 +32,12 @@ const PostItem = ({post}) => {
     return (
         <div>
             <div style={{ width: "100%", height: "80px", margin: '2% 10% 2% 10%', padding: '0.5rem', cursor: 'pointer', hover: ''}}>
-                <h3>{title}</h3>
+                <h3 style={{fontSize: '20px'}}>{title}</h3>
                 <StyledInfo>
                     <FaRegComment style={{padding: '5px'}}/>
                     <div>{comments}</div> 
                 </StyledInfo>
-                <div style={{ color: '#767676' }}>{hashtag && `#${hashtag}`}</div>
+                <div style={{ color: '#767676', marginTop: '50px' }}>{hashtag && `#${hashtag}`}</div>
             </div>
                         
             <hr style={{ backgroundColor : '#D9D9D9', border: '0', width: '85%', height: '2px', marginTop: '5px' }}/>

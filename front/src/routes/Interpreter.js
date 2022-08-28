@@ -68,6 +68,7 @@ const Input = styled.textarea`
     border-top: 1px solid #517599;
     border-bottom: 1px solid #517599;
     margin-bottom: -5px;
+    outline-style: none;
 `;
 
 const Title = styled.div`
