@@ -10,11 +10,11 @@ function Router() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route exact path="/" element={<MainPage/>} />
-        <Route exact path="/board/:category" element={<PostList/>}/>
-        <Route path="/upload" element={<Upload/>} />
-        <Route path="/post/:postId" element={<Post/>} />
-        <Route path="/inter" element={<Interpreter/>} />
+        <Route exact path="/front/" element={<MainPage/>} />
+        <Route exact path="/front/board/:category" element={<PostList/>}/>
+        <Route path="/front/upload" element={<Upload/>} />
+        <Route path="/front/post/:postId" element={<Post/>} />
+        <Route path="/front/inter" element={<Interpreter/>} />
       </Routes>
     </BrowserRouter>
   );
