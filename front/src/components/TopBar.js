@@ -48,8 +48,8 @@ function TopBar() {
       <Box>
         <Logo src={imgLogo} onClick={() => window.location.href = '/'}/>
         <Menus>
-          <Menu href='/Frontend/board/tox'>게시글</Menu>
-          <Menu href='/Frontend/inter'>MZ용어 번역기</Menu>
+          <Menu href='/board/tox'>게시글</Menu>
+          <Menu href='/inter'>MZ용어 번역기</Menu>
           <Menu>개발자 소개</Menu>
         </Menus>
         <Button>로그인</Button>

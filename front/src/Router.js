@@ -8,13 +8,13 @@ import PostList from './routes/PostList';
 
 function Router() {
   return (
-    <BrowserRouter basename=''>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route exact path="/Frontend" element={<MainPage/>} />
-        <Route exact path="/Frontend/board/:category" element={<PostList/>}/>
-        <Route path="/Frontend/upload" element={<Upload/>} />
-        <Route path="/Frontend/post/:postId" element={<Post/>} />
-        <Route path="/Frontend/inter" element={<Interpreter/>} />
+        <Route exact path="/" element={<MainPage/>} />
+        <Route exact path="/board/:category" element={<PostList/>}/>
+        <Route path="/upload" element={<Upload/>} />
+        <Route path="/post/:postId" element={<Post/>} />
+        <Route path="/inter" element={<Interpreter/>} />
       </Routes>
     </BrowserRouter>
   );
