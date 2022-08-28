@@ -32,7 +32,7 @@ const Button = styled.div`
     background: #5C80A4;
     border-radius: 20px;
     color: white;
-    height: 30px;
+    height: 32px;
     width: 100px;
     display: flex;
     justify-content: center;
@@ -144,8 +144,8 @@ function Interpreter() {
                     <Button>X의 언어</Button>
                     <form onSubmit={handleSubmit(onValid)}>
                     <Input {...register("source", { required: true })}/>
-                        {errors.source && alert("번역할 단어 또는 문장을 입력해주세요")}
                         <div style={{display: "flex", justifyContent: "right"}}>
+                        {errors.source && <div style={{alignSelf: 'center', marginRight: '20px', color: "brown"}}>번역할 단어 또는 문장을 입력해주세요</div>}
                             <Submit type="submit" value="번역하기"/>
                         </div>
                     </form>

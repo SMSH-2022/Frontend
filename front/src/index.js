@@ -6,7 +6,7 @@ import App from './App';
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -54,8 +54,8 @@ table {
 }
 body {
   // 폰트가 작동하지 않는다면 sans-serif 사용 예정
-  font-family: 'Source Sans Pro', sans-serif;
-  background: radial-gradient(95.15% 88.15% at 50% 17.78%, #8ED7DA 0%, #62BEE8 100%);
+  background: radial-gradient(141.83% 131.39% at 50% -15.14%, #F9C6CF 1.56%, #F0C1CA 21.98%, #C4BEDF 58.23%, #62BEE8 89.06%);
+backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   color:black;
 }

@@ -13,7 +13,7 @@ function Router() {
         <Route exact path="/" element={<MainPage/>} />
         <Route exact path="/board/:category" element={<PostList/>}/>
         <Route path="/upload" element={<Upload/>} />
-        <Route path="/post" element={<Post/>} />
+        <Route path="/post/:postId" element={<Post/>} />
         <Route path="/inter" element={<Interpreter/>} />
       </Routes>
     </BrowserRouter>

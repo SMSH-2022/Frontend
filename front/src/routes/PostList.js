@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PostItem from './PostItem';
 import { Link, useParams } from 'react-router-dom';
 import {FcSearch} from 'react-icons/fc';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const StyledBody = styled.div`
@@ -66,7 +65,7 @@ const SearchBar = styled.input`
     margin: 0;
     font-size: 12px;
     border: 0;
-    min-width: 80%;
+    min-width: 50%;
     background-color: white;
     outline-style: none;
     padding: 20px;
