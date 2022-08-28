@@ -93,7 +93,7 @@ const MainPage = () => {
                     <div className='icon'>👨‍👩‍👧</div>
                     <div className='menu'>모두에게<br/>질문하기</div>
                 </StyledAnchor> 
-            </motion.div>
+            </motion.div> 
         </StyledBody>
             
     );
