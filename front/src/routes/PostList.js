@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PostItem from './PostItem';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const StyledBody = styled.div`
-    background: radial-gradient(95.15% 88.15% at 50% 17.78%, #8ED7DA 0%, #62BEE8 100%);
-    backdrop-filter: blur(4px);
+    /* background: radial-gradient(95.15% 88.15% at 50% 17.78%, #8ED7DA 0%, #62BEE8 100%);
+    backdrop-filter: blur(4px); */
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -17,14 +17,16 @@ const StyledList = styled.div`
     background-color: white;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    margin-top: 30px;
     justify-content: center;
     align-items: center;
 `
 
 const WriteButton = styled.button`
     margin-right: 5%;
-    margin-top: 5%;
-    margin-bottom: 1%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    justify-self: right center;
     padding: 0.3rem 1.8rem 0.3rem 1.8rem;  /* top right bottom left */
     border-radius: 10px;
     background-color: #62BEE8;
@@ -34,6 +36,7 @@ const WriteButton = styled.button`
     outline: 0;
     :hover{
         cursor: pointer;
+        background-color: #75C5EA;
     }
 `
 
@@ -49,7 +52,9 @@ const StyledLink = styled.a`
     color: ${(props) => (props.isSelected ? "#FFFFFF" : "black")};
     :hover{
         cursor: pointer;
+        background: #CDE7F3;
     }
+    transition: all 0.1s;
 `
 
 const data = {
@@ -86,26 +91,33 @@ const data = {
     ]
 };
 
-// const usePrevious = (prevCategory) => {
-//     const ref = useRef();
-//     useEffect(() => {
-//         ref.current = prevCategory;
-//         ref.style
-//     });
-//     // return ref.current;
-// }
-
 const PostList = () => {
     const { category } = useParams();
     const [board, setBoard] = useState(category);  // 게시판 종류
     const [posts, setPosts] = useState(data[category]);  // 해당 게시판 글 목록
+    //const posts = data[category];
     console.log("all posts", posts);
 
-    //const prevBoard = usePrevious(category);
+    /* data fetch */
+    // const fetch = ('') => {
+    //     fetch()  // 인기있는 영화를 가져오는 것(fetch)
+    //     .then(response => response.json())  // response가 결과값이지만 그걸 그대로 쓸 수 없음 -> .json()
+    //     .then(response => {
+    //         console.log(response.);
+    //         setPosts(response.data.[category]);
+    //     });
+    // }
+
+    // useEffect(() => {
+    //     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+    //     fetch('');
+        
+    // }, []);    
+
 
     useEffect(() => {
         setBoard(category);
-    }, [category])
+    }, [category]);
 
     return (
         <StyledBody>
