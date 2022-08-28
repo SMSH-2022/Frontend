@@ -67,6 +67,7 @@ const Tag = styled(Button)`
     width: 80px;
     height: 20px;
     margin: 20px;
+    margin-right: 0px;
 `
 
 const SubTitle = styled(Title)`
@@ -148,12 +149,13 @@ const Hr = styled.hr`
 const CommentButton = styled(Button)`
     width: 80px;
     height: 20px;
-    font-size: 14px;
+    font-size: 12px;
+    background-color: ${(props) => props.gennie === "x" ? "#EE58BE" : "#75C5EA"};
 `;
 
 const BestButton = styled(CommentButton)`
-    color: #EE58BE;
-    background: rgba(238, 88, 190, 0.27);
+    color: ${(props) => props.gennie === "x" ? "#EE58BE" : "#75C5EA"};
+    background-color: ${(props) => props.gennie === "x" ? "rgba(238, 88, 190, 0.27)" : "rgba(117, 197, 234, 0.27)"};
     font-size: 12px;
     font-weight: 600;
 `
@@ -166,10 +168,25 @@ const Likes = styled.div`
     cursor: pointer;
 `
 
+const postDummy = {
+    id: 3,
+    title: "얌마 차지철",
+    user: "문상훈",
+    gennie: "x",
+    content: "일루와바",
+    tags: ["밈", "빠더너스"],
+}
+
+const dummies = [ 
+    { id: 1, name: "문상훈", gennie: "x",  content: "찌니꾸 사랑해~~~~", likes: 100, isLiked: true},
+    { id: 2, name: "차지철", gennie: "mz",  content: "댓글2", likes: 75, isLiked: false},
+];
+
 function Post() {
     const postId = useLocation().pathname.substring(6); // 게시물 id
+    const [post, setPost] = useState(postDummy);
     const [newComment, setNewComment] = useState();
-    const [comments, setComments] = useState([{id: 1, name: "문상훈" , content: "찌니꾸 사랑해~~~~", likes: 100, isLiked: true}, {id: 2, name: "차지철", content: "댓글2", likes: 75, isLiked: false}]);
+    const [comments, setComments] = useState(dummies);
 
     useEffect(() => {
     //     axios.get(`${API_URL}/${postId}`)
@@ -199,14 +216,20 @@ function Post() {
         <Wrapper>
             <Box>
                 <div style={{display: "flex", marginLeft: "5px", marginBottom: "10px"}}>
-                    <Title>제목</Title>
-                    <div style={{color: "#767676", alignSelf:"flex-end", margin: "5px 10px"}}>글 작성자</div>
+                    <Title>{post.title}</Title>
+                    <div style={{color: "#767676", alignSelf:"flex-end", margin: "5px 10px"}}>{post.user}</div>
                 </div>
-                <Button>x-gennie에게 궁금해요</Button>
+                <Button>{post.gennie}-gennie에게 궁금해요</Button>
 
                 <Textfield>
-                    <div style={{padding: "20px", minHeight: "200px"}}>안녕</div>
-                    <Tag># 해시태그</Tag>
+                    <div style={{padding: "20px", minHeight: "200px"}}>{post.content}</div>
+                    <span style={{display: "flex", flexDirection: "row"}}>
+                    {
+                        post.tags.map((tag) => 
+                            <Tag key={tag}># {tag}</Tag>
+                        )
+                    }
+                    </span>
                 </Textfield>
 
                 <SubTitle>댓글 작성</SubTitle>
@@ -224,10 +247,10 @@ function Post() {
                             {comment !== comments[0] ? <Hr/> : null}
                             <CommentName>
                                 {comment.name}
-                                <CommentButton>x-genes</CommentButton>
+                                <CommentButton gennie={comment.gennie}>{comment.gennie}-gennies</CommentButton>
                                 {
                                     comment === comments[0] ? 
-                                    <BestButton>베스트 댓글</BestButton>
+                                    <BestButton gennie={comment.gennie}>베스트 댓글</BestButton>
                                     : null
                                 }   
                                 <Likes onClick={() => onClickLike(comment)}>
