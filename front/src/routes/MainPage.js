@@ -81,7 +81,6 @@ const MainPage = () => {
                 variants={popupVariants} initial="start" animate="end" transition={{duration: 1}}
                 style={{ display: 'flex', flexDirection: 'column', margin: '5%', justifyContent: 'left', alignItems: 'left'}}
             >
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '5%', justifyContent: 'left', alignItems: 'left'}}>
                 <StyledAnchor href='/board/tox'>
                     <div className='icon'>🙋🏼‍♂️</div>
                     <div className='menu'>X-gennie에게<br/>질문하기</div>
@@ -94,8 +93,7 @@ const MainPage = () => {
                     <div className='icon'>👨‍👩‍👧</div>
                     <div className='menu'>모두에게<br/>질문하기</div>
                 </StyledAnchor> 
-                </motion.div>  
-            </div>
+            </motion.div> 
         </StyledBody>
             
     );
