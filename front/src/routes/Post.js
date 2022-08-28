@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import {AiTwotoneLike, AiOutlineLike} from "react-icons/ai";
+import { useLocation } from "react-router";
+import axios from "axios";
+import { API_URL } from "../config";
 
 const Wrapper = styled.div`
     padding-top: 20px;
@@ -86,20 +89,25 @@ const Input = styled.textarea`
     height: 80px;
     resize: none;
     box-sizing : border-box;
+    outline-style: none;
     padding: 20px;
 `;
 
-const Submit = styled.input`
+const Submit = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80px;
     height: 30px;
-    background: #EE58BE;
+    &:disabled{
+        background-color: #767676;
+        cursor: default;
+    }
+    background-color: #EE58BE;
+    cursor: pointer;
     border-radius: 20px;
     color: #FFFFFF;
     border: 0;
-    cursor: pointer;
     margin-top: 10px;
 `;
 
@@ -159,44 +167,32 @@ const Likes = styled.div`
 `
 
 function Post() {
+    const postId = useLocation().pathname.substring(6); // 게시물 id
     const [newComment, setNewComment] = useState();
     const [comments, setComments] = useState([{id: 1, name: "문상훈" , content: "찌니꾸 사랑해~~~~", likes: 100, isLiked: true}, {id: 2, name: "차지철", content: "댓글2", likes: 75, isLiked: false}]);
-    const {register,  formState: { errors }, handleSubmit, setValue } = useForm();
 
     useEffect(() => {
+    //     axios.get(`${API_URL}/${postId}`)
+    //     .then((res)=>{
+    //         // 게시글 정보 가져오기
+    //   });
+    }, [])
+
+    useEffect(() => {
+        // 새 댓글 등록
         console.log(newComment);
     }, [newComment])
 
-    const onValid = (data) => {
-        setNewComment(data);
-    }
-
-    useEffect(() => {
-        // fetch(``, {
-        //     method: 'POST',
-        //     headers: {
-        //     'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(comments),
-        // }).then(async (res) => {
-        //     const jsonRes = await res.json();
-        //     console.log('응답 : ', jsonRes);
-        // });
-    }, [comments])
-
     const onClickLike = (value) => {
-        setComments((prev) =>{
-            const targetIndex = prev.findIndex(comment => comment.id === value.id);
-            const newVal = prev;
-            newVal[targetIndex].isLiked = !prev[targetIndex].isLiked;
-            if (newVal[targetIndex].isLiked === true) {
-                newVal[targetIndex].likes += 1
-            } else {
-                newVal[targetIndex].likes -= 1
-            }
-
-            return [...newVal];
-        });
+        const targetIndex = comments.findIndex(comment => comment.id === value.id);
+        const newVal = comments;
+        newVal[targetIndex].isLiked = !value.isLiked;
+        if (newVal[targetIndex].isLiked === true) {
+            newVal[targetIndex].likes += 1
+        } else {
+            newVal[targetIndex].likes -= 1
+        }
+        setComments([...newVal]);
     }
 
     return (
@@ -214,11 +210,10 @@ function Post() {
                 </Textfield>
 
                 <SubTitle>댓글 작성</SubTitle>
-                <form onSubmit={handleSubmit(onValid)}>
-                    <Input {...register("comment", { required: true })} placeholder="댓글을 입력하세요"/>
-                    {errors.comment && alert("댓글을 입력해주세요")}
+                <form>
+                    <Input onChange={(e) => setNewComment(e.target.value)} placeholder="댓글을 입력하세요"/>
                     <div style={{display: "flex", justifyContent: "right"}}>
-                        <Submit type="submit" value="저장"/>
+                        <Submit disabled={newComment? false: true}>저장</Submit>
                     </div>
                 </form>
 

@@ -28,7 +28,7 @@ const PostItem = ({post}) => {
 
     return (
         <div>
-            <StyledItem>
+            <StyledItem onClick={() => window.location.href = `/post/${post.id}`}>
                 <h3 style={{ paddingLeft: '15px', paddingTop: '8px'}}>{title}</h3>
                 <StyledInfo>
                     <FaRegComment style={{padding: '5px'}}/>

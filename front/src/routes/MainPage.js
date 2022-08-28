@@ -5,8 +5,6 @@ import imgBubble from '../img/MainBackground.png'
 import {AnimatePresence, motion, useMotionValue, useTransform} from 'framer-motion';
 
 const StyledBody = styled.div`
-    background: radial-gradient(95.15% 88.15% at 50% 17.78%, #8ED7DA 0%, #62BEE8 100%);
-    backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +45,6 @@ const StyledDiv = styled.div`
 `
 
 const MainPage = () => {
-
     return (
         /* Body */
         <StyledBody>

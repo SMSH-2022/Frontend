@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { WithContext as ReactTags } from 'react-tag-input';
 import './ReactTags.css';
+import axios from "axios";
 
 
 const Wrapper = styled.div`
@@ -104,17 +105,14 @@ function Upload() {
       };
 
     useEffect(() => {
-        fetch(``, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(post),
-      }).then(async (res) => {
-        const jsonRes = await res.json();
-        console.log('응답 : ', jsonRes);
-      });
-      //window.location.href = '/post'
+        // 게시물 등록 후 등록된 게시물 페이지로 이동
+        // axios.post('', {params:{}, withCredentials: true})
+        // .then((response) => {
+        //     // const postId = resonse.json().id
+        // })
+        // .catch((e) => console.log(e));
+        const postId = 3;
+        window.location.href = `/post/${postId}`;
     }, [post])
 
     const handleValid = (data) => {
