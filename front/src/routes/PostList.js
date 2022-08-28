@@ -78,14 +78,18 @@ const data = {
         {
             id: 1,
             title: 'mz에게 첫 글',
-            hashtag: 'mz에게',
+            user: '문당훈',
+            gennie: 'x',
+            hashtags: ['mz에게', '라르크앙시엘'],
             comments: 4
         },
 
         {
             id: 2,
             title: 'mz에게 두번째 글',
-            hashtag: 'mz 2번째',
+            user: '차지철',
+            gennie: 'x',
+            hashtags: ['mz에게', '히토시'],
             comments: 5
         }
     ],
@@ -93,7 +97,9 @@ const data = {
         {
             id: 3,
             title: 'x에게 첫 글',
-            hashtag: 'x에게',
+            user: '김진혁',
+            gennie: 'x',
+            hashtags: ['x에게', '털보', '터래기'],
             comments: 4
         }
     ],
@@ -101,7 +107,9 @@ const data = {
         {
             id: 4,
             title: '모두에게 첫 글',
-            hashtag: '모두에게',
+            user: '빠더너스',
+            gennie: 'x',
+            hashtags: ['모두에게', '복학생'],
             comments: 4
         }
     ]
