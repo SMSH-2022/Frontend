@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PostItem from './PostItem';
 import { Link, useParams } from 'react-router-dom';
 import {FcSearch} from 'react-icons/fc';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const StyledBody = styled.div`
-    background: radial-gradient(95.15% 88.15% at 50% 17.78%, #8ED7DA 0%, #62BEE8 100%);
-    backdrop-filter: blur(4px);
+    /* background: radial-gradient(95.15% 88.15% at 50% 17.78%, #8ED7DA 0%, #62BEE8 100%);
+    backdrop-filter: blur(4px); */
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -19,14 +21,16 @@ const StyledList = styled.div`
     background-color: white;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    margin-top: 30px;
     justify-content: center;
     align-items: center;
 `
 
 const WriteButton = styled.button`
-    margin-right: 8%;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-right: 5%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    justify-self: right center;
     padding: 0.3rem 1.8rem 0.3rem 1.8rem;  /* top right bottom left */
     border-radius: 10px;
     background-color: #62BEE8;
@@ -36,6 +40,7 @@ const WriteButton = styled.button`
     outline: 0;
     :hover{
         cursor: pointer;
+        background-color: #75C5EA;
     }
 `
 
@@ -43,7 +48,7 @@ const StyledLink = styled.a`
     border-radius: 16px;
     background: ${(props) => (props.isSelected ? "#62BEE8" : "#FFFFFF")};
     box-shadow: ${(props) => (props.isSelected ? "inset 0px 15px 15px rgba(0, 0, 0, 0.25)" : "0px 30px 60px rgba(32, 56, 85, 0.15)")};
-    margin: 1rem 1.5rem 1rem 1.5rem;
+    margin: 0.5rem 1.5rem 0.5rem 1.5rem;
     border: 0;
     outline: 0;
     padding: 1.3rem 2rem 1.3rem 2rem;  /* top right bottom left */
@@ -51,7 +56,9 @@ const StyledLink = styled.a`
     color: ${(props) => (props.isSelected ? "#FFFFFF" : "black")};
     :hover{
         cursor: pointer;
+        background: #CDE7F3;
     }
+    transition: all 0.1s;
 `;
 
 const SearchBar = styled.input`
@@ -101,26 +108,26 @@ const data = {
     ]
 };
 
-// const usePrevious = (prevCategory) => {
-//     const ref = useRef();
-//     useEffect(() => {
-//         ref.current = prevCategory;
-//         ref.style
-//     });
-//     // return ref.current;
-// }
-
 const PostList = () => {
     const { category } = useParams();
     const [board, setBoard] = useState(category);  // 게시판 종류
     const [posts, setPosts] = useState(data[category]);  // 해당 게시판 글 목록
     const [keyword, setKeyword] = useState();
 
-    //const prevBoard = usePrevious(category);
+    /* data request */
+    // const getPosts = (endpoint) => {
+    //  axios.get('', {params:{}, withCredentials: true})
+    // .then((response) => {
+    //      console.log(response.data);
+    //      setPosts(response.data[category]);
+    // })
+    // .catch((e) => console.log(e));
 
     useEffect(() => {
         setBoard(category);
-    }, [category])
+    //     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+    //     getPosts(endpoint);
+    }, [category]);
 
     const onClickSearch = () => {
         setPosts(() => {return Object.values(posts).filter((post) => post.title.includes(keyword))});
@@ -136,7 +143,7 @@ const PostList = () => {
                     </div>
                     <WriteButton onClick={() => window.location.href = '/upload'}>글쓰기</WriteButton>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'row', margin: '5% 10% 5% 10%', justifyContent: 'center'}}>
+                <div style={{ display: 'flex', flexDirection: 'row', margin: '5% 10% 3% 10%', justifyContent: 'center'}}>
                     <StyledLink isSelected={category === "tox" ? true : false} href="/board/tox">
                         <span style={{ fontSize: 'x-large' }}>🙋🏼‍♂️ </span>
                         <span style={{ fontSize: 'medium', fontWeight: 'bold'}}>X-gennie한테 질문하기</span>
@@ -150,7 +157,9 @@ const PostList = () => {
                         <span style={{ fontSize: 'medium', fontWeight: 'bold'}}>모두에게 질문하기</span>
                     </StyledLink>
                 </div>
-                { posts &&  posts.map(post => { console.log("postlist", post); return (<PostItem key={post.id} post={post}/>)})}
+                <hr style={{ backgroundColor : '#D9D9D9', border: '0', width: '90%', height: '2px' }}/>   
+ 
+                { posts &&  posts.slice(0).reverse().map(post => { console.log("postlist", post); return (<PostItem key={post.id} post={post}/>)})}
             </StyledList>
         </StyledBody>
     );
