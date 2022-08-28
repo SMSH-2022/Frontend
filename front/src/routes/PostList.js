@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PostItem from './PostItem';
+import { Link, useParams } from 'react-router-dom';
+import {FcSearch} from 'react-icons/fc';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,6 +13,7 @@ const StyledBody = styled.div`
     justify-content: center;
     height: 100vh;
     width: 100%;
+    margin-top: 40px;
 `
 
 const StyledList = styled.div`
@@ -56,7 +59,20 @@ const StyledLink = styled.a`
         background: #CDE7F3;
     }
     transition: all 0.1s;
-`
+`;
+
+const SearchBar = styled.input`
+    height: 31px;
+    margin: 0;
+    font-size: 12px;
+    border: 0;
+    min-width: 80%;
+    background-color: white;
+    outline-style: none;
+    padding: 20px;
+    box-sizing : border-box;
+    border-radius: 10px;
+`;
 
 const data = {
     tomz: [
@@ -96,8 +112,7 @@ const PostList = () => {
     const { category } = useParams();
     const [board, setBoard] = useState(category);  // 게시판 종류
     const [posts, setPosts] = useState(data[category]);  // 해당 게시판 글 목록
-    //const posts = data[category];
-    console.log("all posts", posts);
+    const [keyword, setKeyword] = useState();
 
     /* data request */
     // const getPosts = (endpoint) => {
@@ -114,10 +129,18 @@ const PostList = () => {
     //     getPosts(endpoint);
     }, [category]);
 
+    const onClickSearch = () => {
+        setPosts(() => {return Object.values(posts).filter((post) => post.title.includes(keyword))});
+    }
+
     return (
         <StyledBody>
             <StyledList>
                 <div style={{ borderTopLeftRadius: '20px', borderTopRightRadius: '20px', width: '100%', textAlign: 'right', background: '#F3FBFB', borderColor: '#C4C4C4', borderStyle: 'solid', borderWidth: '0 0 1px 0' }}>
+                    <div style={{display: 'flex', justifyContent: 'center', paddingTop: '20px'}}>
+                        <SearchBar placeholder='검색어를 입력하세요' value={keyword} onChange={(e) => setKeyword(e.target.value)}/>
+                        <FcSearch onClick={onClickSearch} style={{width: '25px', height: '25px', cursor: 'pointer', padding: '5px', marginLeft: '5px'}}/>
+                    </div>
                     <WriteButton onClick={() => window.location.href = '/upload'}>글쓰기</WriteButton>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row', margin: '5% 10% 3% 10%', justifyContent: 'center'}}>

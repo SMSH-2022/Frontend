@@ -35,7 +35,7 @@ const PostItem = ({post}) => {
                     <div>{comments}</div> 
                 </StyledInfo>
                 <div style={{ color: '#767676', paddingLeft: '15px', paddingBottom: '15px' }}>{hashtag && `#${hashtag}`}</div>
-            </StyledItem>                        
+            </StyledItem>
             <hr style={{ backgroundColor : '#D9D9D9', border: '0', width: '85%', height: '2px', marginTop: '5px' }}/>
         </div>        
     );

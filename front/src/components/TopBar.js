@@ -18,6 +18,7 @@ const Box = styled.div`
 const Logo = styled.img`
   width: 40px;
   height: 40px;
+  cursor: pointer;
 `;
 
 const Menus = styled.div`
@@ -45,7 +46,7 @@ const Button  = styled(Menu)`
 function TopBar() {
     return (
       <Box>
-        <Logo src={imgLogo}/>
+        <Logo src={imgLogo} onClick={() => window.location.href = '/'}/>
         <Menus>
           <Menu href='/board/tox'>게시글</Menu>
           <Menu href='/inter'>MZ용어 번역기</Menu>
